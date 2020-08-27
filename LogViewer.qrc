@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/imagens">
+        <file alias="livre">images/stop.png</file>
+        <file alias="ocupado">images/play.png</file>
+        <file alias="ico">images/logviewer.ico</file>
+    </qresource>
+</RCC>
