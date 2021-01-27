@@ -74,7 +74,7 @@ public
 slots:
 
 	//!	/brief
-	void			Log(int, QString, QString, QString Utf8Msg = "");
+	void			Log(int, QString, QString);
 
 	//!	\brief Altera qual texto será exibido em função do nível de detalhe solicitado.
 	void			changeDepth(int i);

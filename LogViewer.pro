@@ -6,9 +6,9 @@ TEMPLATE = app
 
 TARGET = LogViewer
 
-REV_MAJOR_CODE = 1
-REV_MINOR_CODE = 0
-REV_PATCH_CODE = 9
+VER_MAJ = 1
+VER_MIN = 0
+VER_PAT = 9
 PROJECT_DIR=$$PWD
 include (../QtBaseGeral/base_geral.pri)
 

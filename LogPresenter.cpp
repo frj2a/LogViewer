@@ -163,7 +163,7 @@ void LogPresenter::clear(void)	{
 	mTextEditFromParent->clear();
 }
 
-void LogPresenter::Log(int Tip, QString Cls, QString Msg, QString Utf8Msg)	{	// slot
+void LogPresenter::Log(int Tip, QString Cls, QString Msg)	{	// slot
 	QString entrada;
 	entrada.append(QDateTime::currentDateTime().toString("yyyy-MMM-dd hh:mm:ss.zzz"));
 	entrada.append(" TP:");
@@ -171,7 +171,8 @@ void LogPresenter::Log(int Tip, QString Cls, QString Msg, QString Utf8Msg)	{	// 
 	entrada.append(" OR:");
 	entrada.append(Cls);
 	entrada.append(" RG:");
-	entrada.append(QString::fromUtf8(Msg.toStdString().c_str()).append(Utf8Msg));
+	entrada.append(Msg);
+	// entrada.append(QString::fromUtf8(Msg.toStdString().c_str()));
 	entrada.append("\n");
 	acrescentarLinha(&entrada);
 }

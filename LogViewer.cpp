@@ -128,8 +128,8 @@ LogViewer::LogViewer(QWidget *parent) : QMainWindow(parent), Ui::LogViewerClass(
 				 QMessageBox::Ok,this);
 				 msgbox->exec();
 				 */
-				mMsgPermSB.setText(QString(trUtf8("Remote Address: %1  port  %2")).arg(mEndRem).arg(QString::number(mPorta)) + mAplicativoVersao);
-				statusbar->showMessage(trUtf8("Conectado"), 5000);
+				mMsgPermSB.setText(QString(tr("Remote Address: %1  port  %2")).arg(mEndRem).arg(QString::number(mPorta)) + mAplicativoVersao);
+				statusbar->showMessage(tr("Conectado"), 5000);
 				mEstadoLeitura.show();
 
 				mModoOperacaoArquivo = false;
@@ -141,13 +141,13 @@ LogViewer::LogViewer(QWidget *parent) : QMainWindow(parent), Ui::LogViewerClass(
 				mudarProf(mNivelLog);
 
 			} else {
-				mMsgPermSB.setText(trUtf8("Waiting configuration") + mAplicativoVersao);
-				statusbar->showMessage(trUtf8("Ready."), 5000);
+				mMsgPermSB.setText(tr("Waiting configuration") + mAplicativoVersao);
+				statusbar->showMessage(tr("Ready."), 5000);
 			}
 		}
 	} else {
-		mMsgPermSB.setText(trUtf8("Waiting configuration") + mAplicativoVersao);
-		statusbar->showMessage(trUtf8("Ready."), 5000);
+		mMsgPermSB.setText(tr("Waiting configuration") + mAplicativoVersao);
+		statusbar->showMessage(tr("Ready."), 5000);
 	}
 }
 
@@ -206,7 +206,7 @@ void LogViewer::lerLinhas() {
 }
 
 void LogViewer::conectarServidor() {
-	statusbar->showMessage(trUtf8("Waiting connection parameters."), 5000);
+	statusbar->showMessage(tr("Waiting connection parameters."), 5000);
 
 	ServerId * serverId = new ServerId(&mEndRem, &mPorta, this);
 
@@ -231,7 +231,7 @@ void LogViewer::conectarServidor() {
 	delete serverId;
 
 	mModoOperacaoArquivo = false;
-	mMsgPermSB.setText(QString(trUtf8("Remote address: %1  port  %2")).arg(mEndRem).arg(QString::number(mPorta)) + mAplicativoVersao);
+	mMsgPermSB.setText(QString(tr("Remote address: %1  port  %2")).arg(mEndRem).arg(QString::number(mPorta)) + mAplicativoVersao);
 
 	tcpSocket = new QTcpSocket(this);
 	connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(lerLinhas()));
@@ -257,7 +257,7 @@ void LogViewer::abrirArquivo() {	// slot de menu
 	if (!mModoOperacaoArquivo) {
 		desconectarServidor();
 	}
-	mNomeArq = QFileDialog::getOpenFileName(this, trUtf8("Open Log File"), "Z://DesenvEletronico", trUtf8("Log files (*.log *.txt)"));
+	mNomeArq = QFileDialog::getOpenFileName(this, tr("Open Log File"), "Z://DesenvEletronico", tr("Log files (*.log *.txt)"));
 	processarArquivo();
 }
 
@@ -266,8 +266,8 @@ void LogViewer::processarArquivo() {
 	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
 	mArqLog.setFileName(mNomeArq);
 	if (mArqLog.exists()) {
-		mMsgPermSB.setText(QString(trUtf8("File %1")).arg(mNomeArq) + mAplicativoVersao);
-		statusbar->showMessage(trUtf8("Processing ..."), 4000);
+		mMsgPermSB.setText(QString(tr("File %1")).arg(mNomeArq) + mAplicativoVersao);
+		statusbar->showMessage(tr("Processing ..."), 4000);
 		if (mArqLog.open(QFile::ReadOnly | QFile::Text)) {
 			qint64 tamanho = mArqLog.size();
 			mPresenter->clear();
@@ -286,12 +286,12 @@ void LogViewer::processarArquivo() {
 		}
 	} else {
 		if (mNomeArq.isEmpty()) {
-			mNomeArq = trUtf8("(not specified)");
+			mNomeArq = tr("(not specified)");
 		}
 		QMessageBox *msgbox = new QMessageBox(QMessageBox::Critical, "Arquivo não encontrado", mNomeArq, QMessageBox::Ok, this);
 		msgbox->exec();
-		mMsgPermSB.setText(trUtf8("Waiting configuration") + mAplicativoVersao);
-		statusbar->showMessage(trUtf8("Ready."), 5000);
+		mMsgPermSB.setText(tr("Waiting configuration") + mAplicativoVersao);
+		statusbar->showMessage(tr("Ready."), 5000);
 		delete msgbox;
 	}
 	mudaProgresso(0,0);
