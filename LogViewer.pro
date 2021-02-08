@@ -1,6 +1,3 @@
-# "$Date: $"
-# "$Author: $"
-# "$Revision: $"
 
 TEMPLATE = app
 
