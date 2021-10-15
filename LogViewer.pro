@@ -3,6 +3,8 @@ TEMPLATE = app
 
 TARGET = LogViewer
 
+CONFIG += c++11
+
 VER_MAJ = 1
 VER_MIN = 0
 VER_PAT = 9
@@ -31,3 +33,24 @@ win32:RC_FILE = icon.rc
 
 # message($$DEFINES)
 # message($$CONFIG)
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
+
+unix:android: {
+
+    DISTFILES += \
+        android/AndroidManifest.xml \
+        android/build.gradle \
+        android/gradle.properties \
+        android/gradle/wrapper/gradle-wrapper.jar \
+        android/gradle/wrapper/gradle-wrapper.properties \
+        android/gradlew \
+        android/gradlew.bat \
+        android/res/values/libs.xml
+
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+}
